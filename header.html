@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Header</title>
+
+    <link rel="stylesheet" href="./src/output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div id="topBar" class="bg-black text-white text-sm py-2 px-6 flex
+                           justify-between items-center transition-all duration-300 mb-5">
+
+        <p class="text-center text-xs md:text-base w-full md:m-auto">
+            Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!
+            <a href="#" class="underline cursor-pointer ms-4">ShopNow</a>
+        </p>
+
+        <div class="hidden md:block">
+            <select class="bg-black text-white outline-none">
+                <option>English</option>
+                <option>Hindi</option>
+                <option>Gujarati</option>
+            </select>
+        </div>
+
+    </div>
+
+    <header id="mainHeader" class="fixed left-0 right-0 z-50 bg-white shadow-sm transition-all duration-300">
+        <div class="max-w-container mx-auto flex items-center justify-between px-4 py-4">
+
+            <h1 class="text-xl md:text-2xl font-bold">Exclusive</h1>
+
+            <nav class="hidden md:flex space-x-8 text-gray-700 font-medium">
+                <a href="./index.html" class="hover:underline">Home</a>
+                <a href="./contact.html" class="hover:underline">Contact</a>
+                <a href="./about-us.html" class="hover:underline">About</a>
+                <a href="./sign-up.html" class="hover:underline">Sign Up</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <div class="hidden md:flex items-center bg-gray-100 px-3 py-2 rounded-md">
+                    <input type="text" placeholder="Search..." class="bg-transparent outline-none text-sm w-40">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+
+                <a href="./wishlist.html" class="relative">
+                    <i class="fa-regular fa-heart text-lg"></i>
+                    <span id="wishlist-count"
+                        class="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1 rounded-full">
+                        0
+                    </span>
+                </a>
+                <a href="./cartpage.html">
+                    <i class="fa-solid fa-cart-shopping text-lg"></i>
+                </a>
+
+                <button id="openMenu" class="md:hidden text-xl">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+            </div>
+        </div>
+
+    </header>
+
+    <div id="headerSpacer"></div>
+
+    <!-- OVERLAY -->
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40"></div>
+
+    <!-- Mobile - side -->
+    <div id="mobileMenu"
+        class="fixed top-0 right-0 h-full w-72 bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-50 p-5">
+
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-lg font-semibold">Menu</h2>
+            <button id="closeMenu" class="text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="flex items-center bg-gray-100 px-3 py-2 rounded-md mb-6">
+            <input type="text" placeholder="Search..." class="bg-transparent outline-none text-sm w-full">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+
+        <div class="flex flex-col space-y-4 text-gray-700 font-medium">
+            <a href="./index.html" class="hover:underline">Home</a>
+            <a href="./contact.html" class="hover:underline">Contact</a>
+            <a href="./about-us.html" class="hover:underline">About</a>
+            <a href="./sign-up.html" class="hover:underline">Sign Up</a>
+        </div>
+
+    </div>
+
+    <script src="./js/header.js"></script>
+    <script src="./js/script.js"></script>
+
+</body>
+
+</html>
