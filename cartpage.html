@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Page</title>
+    <link rel="stylesheet" href="./src/output.css">
+</head>
+
+<body class="bg-gray-100">
+
+    <div id="header"></div>
+
+    <section class="py-10 px-4">
+        <div class="max-w-6xl mx-auto bg-white p-6 md:p-10 rounded-lg shadow-sm">
+
+            <!-- Header -->
+            <div class="hidden md:grid grid-cols-5 text-gray-500 border-b pb-4 text-sm font-medium text-center">
+                <div class="text-left">Product</div>
+                <div>Price</div>
+                <div>Quantity</div>
+                <div>Subtotal</div>
+                <div></div>
+            </div>
+
+            <!-- Items -->
+            <div id="cartItems" class="divide-y"></div>
+
+            <!-- Buttons -->
+            <div class="flex flex-col md:flex-row justify-between gap-4 mt-6">
+                <button onclick="window.location.href='index.html'" class="border px-6 py-2 rounded hover:bg-gray-100">
+                    Return To Shop
+                </button>
+
+                <button onclick="loadCart()" class="border px-6 py-2 rounded hover:bg-gray-100">
+                    Update Cart
+                </button>
+            </div>
+
+            <!-- Bottom -->
+            <div class="flex flex-col lg:flex-row justify-between gap-8 mt-10">
+
+                <!-- Coupon -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <input type="text" id="coupon" placeholder="Coupon Code"
+                        class="border px-4 py-3 rounded w-full sm:w-72">
+
+                    <button onclick="applyCoupon()" class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded">
+                        Apply Coupon
+                    </button>
+                </div>
+
+                <!-- Total -->
+                <div class="border rounded p-6 w-full lg:w-80">
+                    <h2 class="font-semibold mb-4 text-lg">Cart Total</h2>
+
+                    <div class="flex justify-between border-b py-2 text-gray-600">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">$0</span>
+                    </div>
+
+                    <div class="flex justify-between border-b py-2 text-gray-600">
+                        <span>Shipping:</span>
+                        <span>Free</span>
+                    </div>
+
+                    <div class="flex justify-between py-3 font-semibold text-lg">
+                        <span>Total:</span>
+                        <span id="total">$0</span>
+                    </div>
+
+                    <button class="bg-red-500 hover:bg-red-600 text-white w-full py-3 mt-3 rounded">
+                        Proceed to checkout
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <div id="footer"></div>
+
+    <!-- JS -->
+    <script>
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        function loadCart() {
+            let container = document.getElementById("cartItems");
+            container.innerHTML = "";
+
+            let subtotal = 0;
+
+            cart.forEach((item, index) => {
+                let total = item.price * item.qty;
+                subtotal += total;
+
+                container.innerHTML += `
+                <div class="grid grid-cols-5 items-center py-4 text-center">
+                    
+                    <!-- Product -->
+                    <div class="flex items-center gap-3 text-left">
+                        <img src="${item.img}" class="w-16 h-16 object-contain">
+                        <span>${item.name}</span>
+                    </div>
+
+                    <!-- Price -->
+                    <div>$${item.price}</div>
+
+                    <!-- Quantity -->
+                    <div class="flex justify-center items-center gap-2">
+                        <button onclick="changeQty(${index}, -1)" class="px-2 border">-</button>
+                        <span>${item.qty}</span>
+                        <button onclick="changeQty(${index}, 1)" class="px-2 border">+</button>
+                    </div>
+
+                    <!-- Subtotal -->
+                    <div>$${total}</div>
+
+                    <!-- Remove -->
+                    <div>
+                        <button onclick="removeItem(${index})" class="text-red-500"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                </div>
+                `;
+            });
+
+            document.getElementById("subtotal").innerText = "$" + subtotal;
+            document.getElementById("total").innerText = "$" + subtotal;
+        }
+
+        function changeQty(index, change) {
+            if (cart[index].qty + change <= 0) return;
+
+            cart[index].qty += change;
+            localStorage.setItem("cart", JSON.stringify(cart));
+            loadCart();
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            loadCart();
+        }
+
+        function applyCoupon() {
+            let code = document.getElementById("coupon").value;
+            let subtotal = parseFloat(document.getElementById("subtotal").innerText.replace("$", ""));
+
+            if (code === "SAVE10") {
+                let total = subtotal - (subtotal * 0.1);
+                document.getElementById("total").innerText = "$" + total.toFixed(2);
+                alert("Coupon Applied (10% OFF)");
+            } else {
+                alert("Invalid Coupon");
+            }
+        }
+
+        loadCart();
+    </script>
+
+    <script src="./js/header.js"></script>
+    <script src="./js/script.js"></script>
+
+</body>
+
+</html>
