@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gamepad Product</title>
+    <link rel="stylesheet" href="./src/output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
+
+<body>
+
+    <div id="header"></div>
+
+    <div class="max-w-7xl mx-auto bg-white p-4 mt-6 sm:mt-10 rounded-lg">
+
+        <div class="grid grid-cols-1 lg:grid-cols-[100px_1fr_400px] gap-4 items-start">
+
+            <div class="flex lg:flex-col gap-3 overflow-x-auto lg:overflow-visible">
+
+                <img src="./img/product-details/remote-1.png"
+                    class="thumb w-16 h-16 lg:w-20 lg:h-20 object-cover border rounded cursor-pointer hover:border-red-500 p-1">
+
+                <img src="./img/product-details/remote-2.png"
+                    class="thumb w-16 h-16 lg:w-20 lg:h-20 object-cover border rounded cursor-pointer hover:border-red-500 p-1">
+
+                <img src="./img/product-details/remote-3.png"
+                    class="thumb w-16 h-16 lg:w-20 lg:h-20 object-cover border rounded cursor-pointer hover:border-red-500 p-1">
+
+                <img src="./img/product-details/remote-4.png"
+                    class="thumb w-16 h-16 lg:w-20 lg:h-20 object-cover border rounded cursor-pointer hover:border-red-500 p-1">
+
+            </div>
+
+            <div class="flex justify-center items-center bg-gray-100 rounded-lg 
+                        h-[350px] sm:h-[400px] lg:h-[500px] overflow-hidden">
+
+                <img id="mainImage" src="./img/product-details/remote-5.png"
+                    class="w-full max-w-[500px] h-auto object-contain mx-auto transition duration-300 hover:scale-105">
+
+            </div>
+
+            <!-- RIGHT: DETAILS -->
+            <div class="mt-4 lg:mt-0 max-w-[400px]">
+
+                <h1 class="text-xl sm:text-2xl font-semibold">
+                    Havic HV G-92 Gamepad
+                </h1>
+
+                <!-- Rating -->
+                <div class="flex items-center gap-2 mt-2">
+                    <div class="text-yellow-500 text-lg">★★★★☆</div>
+                    <span class="text-gray-500 text-sm">(150 Reviews)</span>
+                    <span class="text-green-600 text-sm font-medium">In Stock</span>
+                </div>
+
+                <!-- Price -->
+                <h2 class="text-2xl sm:text-3xl font-bold mt-3">$192.00</h2>
+
+                <p class="text-gray-600 mt-3 leading-relaxed">
+                    PlayStation 5 Controller Skin high quality vinyl with air channel adhesive
+                    for easy bubble free install & mess free removal.
+                </p>
+
+                <!-- Colors -->
+                <div class="mt-6">
+                    <p class="font-medium mb-2">Colours:</p>
+                    <div class="flex gap-3">
+                        <span class="w-6 h-6 bg-gray-300 rounded-full border-2 cursor-pointer hover:scale-110"></span>
+                        <span class="w-6 h-6 bg-red-400 rounded-full border-2 cursor-pointer hover:scale-110"></span>
+                    </div>
+                </div>
+
+                <!-- Size -->
+                <div class="mt-6 flex">
+                    <p class="font-medium mb-2">Size:</p>
+                    <div class="flex flex-wrap gap-2 pl-5">
+                        <button class="border px-3 py-1 rounded">XS</button>
+                        <button class="border px-3 py-1 rounded">S</button>
+                        <button class="border px-3 py-1 rounded bg-red-500 text-white">M</button>
+                        <button class="border px-3 py-1 rounded">L</button>
+                        <button class="border px-3 py-1 rounded">XL</button>
+                    </div>
+                </div>
+
+                <!-- Quantity -->
+                <div class="flex items-center gap-2 mt-6">
+                    <button onclick="decrease()" class="px-4 py-1 border rounded text-lg">-</button>
+                    <span id="qty" class="text-lg font-semibold">2</span>
+                    <button onclick="increase()" class="px-4 py-1 bg-red-500 text-white rounded text-lg">+</button>
+                </div>
+
+                <!-- Buy -->
+                <button class="mt-6 w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded transition">
+                    Buy Now
+                </button>
+
+                <!-- Delivery -->
+                <div class="border mt-6 p-4 rounded flex items-start gap-3">
+                    <span class="text-xl">
+
+                    </span>
+                    <div>
+                        <p class="font-medium">Free Delivery</p>
+                        <p class="text-sm text-gray-500">Enter your postal code for Delivery Availability</p>
+                    </div>
+                </div>
+
+                <div class="border mt-3 p-4 rounded flex items-start gap-3">
+                    <span class="text-xl">
+
+                    </span>
+                    <div>
+                        <p class="font-medium">Return Delivery</p>
+                        <p class="text-sm text-gray-500">Free 30 Days Delivery Returns</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let qty = 2;
+
+        function increase() {
+            qty++;
+            document.getElementById("qty").innerText = qty;
+        }
+
+        function decrease() {
+            if (qty > 1) {
+                qty--;
+                document.getElementById("qty").innerText = qty;
+            }
+        }
+
+        document.querySelectorAll(".thumb").forEach(img => {
+            img.addEventListener("click", function () {
+                document.getElementById("mainImage").src = this.src;
+
+                document.querySelectorAll(".thumb").forEach(i => i.classList.remove("border-red-500"));
+                this.classList.add("border-red-500");
+            });
+        });
+    </script>
+
+    <script src="./js/header.js"></script>
+    <script src="./js/script.js"></script>
+
+</body>
+
+</html>
